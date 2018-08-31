@@ -1,0 +1,6 @@
+D:\Работа\Parrot Wings\PW\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Работа\Parrot Wings\PW\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Работа\Parrot Wings\PW\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Работа\Parrot Wings\PW\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Работа\Parrot Wings\PW\bin\roslyn\System.IO.Compression.dll
+D:\Работа\Parrot Wings\PW\bin\roslyn\VBCSCompiler.exe

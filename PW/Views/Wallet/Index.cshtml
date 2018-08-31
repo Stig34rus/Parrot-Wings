@@ -1,0 +1,79 @@
+﻿@model PW.Models.Transaction
+@{
+    ViewBag.Title = "Wallet";
+    PW.Models.Wallet wallet = ViewBag.Wallet;
+    List<PW.Models.WalletHistory> history = ViewBag.History;
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div>Your balance:</div>
+            <div>@wallet.Balance</div>
+            <div></div>
+        </div>
+        <div class="col-md-8">
+            @using (Html.BeginForm("Index", "Wallet", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-xs-4 text-right">
+                        <label class="control-label" for="To-field">Reciever:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        @Html.TextBoxFor(m => m.To, htmlAttributes: new { required = "required", id = "To-field", @class = "col-xs-12 form-control", list = "users-list" })
+                        @Html.ValidationMessageFor(x => x.To)
+                        <datalist id="users-list"></datalist>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-4 text-right">
+                        <label class="control-label" for="Value-field">Value:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        @Html.TextBoxFor(m => m.Value, htmlAttributes: new { required = "required", id = "Value-field", @class = "col-xs-12 form-control" })
+                        @Html.ValidationMessageFor(x => x.Value)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-8">
+                        @Html.ValidationMessage("DB")
+                        <button class="btn btn-default">Send</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table table-striped table-hover">
+                <caption>Last operations:</caption>
+                <tr>
+                    <th>Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Value</th>
+                </tr>
+                @foreach (var operation in history)
+                {
+                    <tr>
+                        <td>@operation.When</td>
+                        <td>@operation.From</td>
+                        <td>@operation.To</td>
+                        <td>@operation.Value</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/getwallets")
+}
